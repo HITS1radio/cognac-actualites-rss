@@ -4,7 +4,7 @@ import xml.etree.ElementTree as ET
 from utils import nettoyer_texte
 
 
-URL = "https://www.sudouest.fr/charente/cognac/rss.xml"
+URL = "https://www.ledauphine.com/ardeche"
 
 
 def recuperer_sudouest():
