@@ -4,7 +4,7 @@ import xml.etree.ElementTree as ET
 from utils import nettoyer_texte
 
 
-URL = "https://www.charentelibre.fr/charente/cognac/rss.xml"
+URL = "https://www.ici.fr/auvergne-rhone-alpes/ardeche-07"
 
 
 def recuperer_charentelibre():
