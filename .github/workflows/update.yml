@@ -1,1 +1,78 @@
+name: Mise à jour RSS Actualités Cognac
 
+on:
+
+  schedule:
+    - cron: "0 * * * *"
+
+  workflow_dispatch:
+
+
+permissions:
+
+  contents: write
+  pages: write
+  id-token: write
+
+
+jobs:
+
+  build:
+
+    runs-on: ubuntu-latest
+
+
+    steps:
+
+
+    - name: Récupération du dépôt
+      uses: actions/checkout@v4
+
+
+
+    - name: Installation Python
+      uses: actions/setup-python@v5
+
+      with:
+        python-version: "3.x"
+
+
+
+    - name: Installation dépendances
+      run: |
+        pip install -r requirements.txt
+
+
+
+    - name: Génération du RSS
+      run: |
+        python scraper.py
+
+
+
+    - name: Publication GitHub Pages
+      uses: actions/upload-pages-artifact@v3
+
+      with:
+        path: .
+
+
+
+  deploy:
+
+
+    needs: build
+
+    runs-on: ubuntu-latest
+
+
+    environment:
+
+      name: github-pages
+
+
+    steps:
+
+
+    - name: Déploiement Pages
+      uses: actions/deploy-pages@v4
